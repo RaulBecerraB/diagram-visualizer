@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, FileText, Tag, Calendar, Filter } from 'lucide-react';
+import { Search, FileText, Tag, Calendar, Filter, User } from 'lucide-react';
 
 export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram, searchTerm, onSearchChange }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -14,7 +14,7 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
   const filteredDiagrams = diagrams.filter(diagram => {
     const matchesSearch = diagram.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          diagram.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         diagram.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+                         diagram.category.toLowerCase().includes(searchTerm.toLowerCase());
     
     const matchesCategory = selectedCategory === 'all' || diagram.category === selectedCategory;
     
@@ -114,27 +114,10 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
 
                 {/* Category */}
                 <div className="flex items-center mb-2">
-                  <Tag className="h-3 w-3 text-blue-400 mr-1" />
+                  <User className="h-3 w-3 text-blue-400 mr-1" />
                   <span className="text-blue-300 text-xs font-medium">
-                    {diagram.category}
+                    {diagram.author}
                   </span>
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1 mb-3">
-                  {diagram.tags.slice(0, 3).map((tag, index) => (
-                    <span
-                      key={index}
-                      className="px-2 py-1 bg-slate-700/50 text-gray-300 text-xs rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {diagram.tags.length > 3 && (
-                    <span className="px-2 py-1 bg-slate-700/50 text-gray-400 text-xs rounded-full">
-                      +{diagram.tags.length - 3}
-                    </span>
-                  )}
                 </div>
 
                 {/* Date */}
@@ -158,7 +141,7 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
       {/* Footer */}
       <div className="p-4 border-t border-slate-700/50">
         <div className="text-xs text-gray-500 text-center">
-          Haz clic en un diagrama para visualizarlo
+          Powered by Raul Becerra
         </div>
       </div>
     </div>

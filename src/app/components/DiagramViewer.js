@@ -207,17 +207,6 @@ export default function DiagramViewer({ diagram }) {
             <span className="text-blue-400 text-xs font-medium">Categoría:</span>
             <span className="text-white text-sm ml-2">{diagram.category}</span>
           </div>
-          
-          <div className="flex flex-wrap gap-1">
-            {diagram.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="px-2 py-1 bg-blue-600/30 text-blue-300 text-xs rounded-full"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
         </div>
       )}
 

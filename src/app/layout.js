@@ -2,7 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 export const metadata = {
-  title: "Visor de Diagramas - Raul Becerra Archives",
+  title: "Visor de Diagramas",
   description: "Visualizador interactivo de diagramas SVG con zoom, pan y navegación avanzada",
   icons: {
     icon: '/favicon.svg',

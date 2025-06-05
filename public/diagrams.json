@@ -1,0 +1,20 @@
+{
+  "diagrams": [
+    {
+      "id": "1",
+      "filename": "JWT-flow.svg",
+      "title": "JWT Flow",
+      "description": "Diagrama que ilustra el flujo simplificado de autenticación con JWT, incluyendo el proceso de login, generación de tokens y validación en el servidor.",
+      "author": "José Raul Becerra Barceló",
+      "createdAt": "2025-01-04T00:00:00.000Z"
+    },
+    {
+      "id": "2",
+      "filename": "asp-dotnet-flow.svg",
+      "title": "ASP.NET Core Flow",
+      "description": "Un sencillo resumen del flujo de ASP.NET Core, con el fin de entender cómo se conectan las distintas capas de la aplicación entre sí.",
+      "author": "José Raul Becerra Barceló",
+      "createdAt": "2025-01-04T00:00:00.000Z"
+    }
+  ]
+} 
