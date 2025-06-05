@@ -10,7 +10,8 @@ import {
   Download, 
   Info,
   Move,
-  MousePointer
+  MousePointer,
+  Share2
 } from 'lucide-react';
 
 export default function DiagramViewer({ diagram }) {
@@ -18,6 +19,7 @@ export default function DiagramViewer({ diagram }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showInfo, setShowInfo] = useState(false);
+  const [shareMessage, setShareMessage] = useState('');
 
   useEffect(() => {
     const loadSvg = async () => {
@@ -55,6 +57,20 @@ export default function DiagramViewer({ diagram }) {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  const shareDiagram = async () => {
+    const url = `${window.location.origin}/?diagram=${diagram.id}`;
+    
+    try {
+      await navigator.clipboard.writeText(url);
+      setShareMessage('¡URL copiada!');
+      setTimeout(() => setShareMessage(''), 2000);
+    } catch (err) {
+      // Fallback for browsers that don't support clipboard API
+      setShareMessage('URL: ' + url);
+      setTimeout(() => setShareMessage(''), 5000);
+    }
   };
 
   if (loading) {
@@ -165,6 +181,14 @@ export default function DiagramViewer({ diagram }) {
       {/* Info and Download Controls */}
       <div className="absolute top-4 right-4 z-10 flex space-x-2">
         <button
+          onClick={shareDiagram}
+          className="flex items-center justify-center w-10 h-10 bg-black/40 backdrop-blur-sm hover:bg-black/60 rounded-lg transition-colors"
+          title="Compartir diagrama"
+        >
+          <Share2 className="h-5 w-5 text-white" />
+        </button>
+        
+        <button
           onClick={() => setShowInfo(!showInfo)}
           className="flex items-center justify-center w-10 h-10 bg-black/40 backdrop-blur-sm hover:bg-black/60 rounded-lg transition-colors"
           title="Información del diagrama"
@@ -207,6 +231,13 @@ export default function DiagramViewer({ diagram }) {
             <span className="text-blue-400 text-xs font-medium">Categoría:</span>
             <span className="text-white text-sm ml-2">{diagram.category}</span>
           </div>
+        </div>
+      )}
+
+      {/* Share Message */}
+      {shareMessage && (
+        <div className="absolute top-16 right-4 z-20 bg-green-600/90 backdrop-blur-sm rounded-lg p-3 text-white text-sm">
+          {shareMessage}
         </div>
       )}
 

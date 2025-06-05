@@ -1,12 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Search, FileText, Loader2 } from 'lucide-react';
 import DiagramViewer from './components/DiagramViewer';
 import DiagramList from './components/DiagramList';
 import diagramsData from '../../public/diagrams.json';
 
 export default function Home() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [selectedDiagram, setSelectedDiagram] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -17,11 +20,34 @@ export default function Home() {
   }));
 
   useEffect(() => {
-    // Auto-select first diagram if available
-    if (diagrams.length > 0) {
-      setSelectedDiagram(diagrams[0]);
+    const diagramId = searchParams.get('diagram');
+    
+    if (diagramId) {
+      // Find diagram by ID from URL
+      const diagram = diagrams.find(d => d.id === diagramId);
+      if (diagram) {
+        setSelectedDiagram(diagram);
+      } else {
+        // If diagram not found, redirect to first diagram or home
+        if (diagrams.length > 0) {
+          router.replace(`/?diagram=${diagrams[0].id}`);
+          setSelectedDiagram(diagrams[0]);
+        }
+      }
+    } else {
+      // No diagram in URL, select first one and update URL
+      if (diagrams.length > 0) {
+        router.replace(`/?diagram=${diagrams[0].id}`);
+        setSelectedDiagram(diagrams[0]);
+      }
     }
-  }, []);
+  }, [searchParams, router]);
+
+  const handleSelectDiagram = (diagram) => {
+    setSelectedDiagram(diagram);
+    // Update URL when diagram is selected
+    router.push(`/?diagram=${diagram.id}`);
+  };
 
   const filteredDiagrams = diagrams.filter(diagram =>
     diagram.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -81,7 +107,7 @@ export default function Home() {
           <DiagramList
             diagrams={filteredDiagrams}
             selectedDiagram={selectedDiagram}
-            onSelectDiagram={setSelectedDiagram}
+            onSelectDiagram={handleSelectDiagram}
             searchTerm={searchTerm}
             onSearchChange={setSearchTerm}
           />
