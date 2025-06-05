@@ -86,17 +86,29 @@ export default function DiagramViewer({ diagram }) {
       {/* Controls */}
       <div className="absolute top-4 left-4 z-10 flex flex-col space-y-2">
         <TransformWrapper
-          initialScale={1}
+          initialScale={0.5}
           minScale={0.1}
           maxScale={5}
           centerOnInit={true}
-          wheel={{ step: 0.1 }}
+          wheel={{ step: 0.1, smoothStep: 0.001 }}
           pinch={{ step: 5 }}
           doubleClick={{ mode: 'reset' }}
+          panning={{ 
+            disabled: false, 
+            velocityDisabled: true,
+            lockAxisX: false,
+            lockAxisY: false,
+            activationKeys: [],
+            excluded: [],
+            wheelPanning: false
+          }}
           limitToBounds={false}
           centerZoomedOut={false}
           disablePadding={true}
           smooth={false}
+          animationTime={0}
+          velocityAnimation={{ disabled: true }}
+          alignmentAnimation={{ disabled: true }}
           wrapperStyle={{
             width: '100%',
             height: '100%',
@@ -236,6 +248,22 @@ export default function DiagramViewer({ diagram }) {
           width: 100% !important;
           height: 100% !important;
           overflow: auto !important;
+        }
+        
+        /* Disable all transitions and animations to prevent momentum */
+        .react-transform-wrapper,
+        .react-transform-wrapper *,
+        .react-transform-component,
+        .react-transform-component * {
+          transition: none !important;
+          animation: none !important;
+          transform-origin: 0 0 !important;
+        }
+        
+        /* Force immediate transform updates */
+        .react-transform-element {
+          transition: none !important;
+          animation: none !important;
         }
       `}</style>
     </div>
