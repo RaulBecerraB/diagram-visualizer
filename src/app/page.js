@@ -50,9 +50,9 @@ export default function Home() {
   };
 
   const filteredDiagrams = diagrams.filter(diagram =>
-    diagram.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    diagram.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    diagram.category.toLowerCase().includes(searchTerm.toLowerCase())
+    (diagram.title || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (diagram.description || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (diagram.author || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   if (diagrams.length === 0) {
@@ -103,6 +103,7 @@ export default function Home() {
         <div className="w-80 border-r border-slate-700/50">
           <DiagramList
             diagrams={filteredDiagrams}
+            totalDiagrams={diagrams.length}
             selectedDiagram={selectedDiagram}
             onSelectDiagram={handleSelectDiagram}
             searchTerm={searchTerm}

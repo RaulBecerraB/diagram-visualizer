@@ -1,26 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { Search, FileText, Tag, Calendar, Filter, User } from 'lucide-react';
+import { Search, FileText, Calendar, User } from 'lucide-react';
 
-export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram, searchTerm, onSearchChange }) {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-  const [showFilters, setShowFilters] = useState(false);
-
-  // Get unique categories
-  const categories = ['all', ...new Set(diagrams.map(d => d.category))];
-
-  // Filter diagrams based on search term and category
-  const filteredDiagrams = diagrams.filter(diagram => {
-    const matchesSearch = diagram.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         diagram.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         diagram.category.toLowerCase().includes(searchTerm.toLowerCase());
-    
-    const matchesCategory = selectedCategory === 'all' || diagram.category === selectedCategory;
-    
-    return matchesSearch && matchesCategory;
-  });
-
+export default function DiagramList({ diagrams, totalDiagrams, selectedDiagram, onSelectDiagram, searchTerm, onSearchChange }) {
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('es-ES', {
       year: 'numeric',
@@ -33,15 +15,8 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
     <div className="h-full flex flex-col bg-slate-900/50 backdrop-blur-sm">
       {/* Header */}
       <div className="p-4 border-b border-slate-700/50">
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4">
           <h2 className="text-xl font-bold text-white">Diagramas</h2>
-          <button
-            onClick={() => setShowFilters(!showFilters)}
-            className="p-2 hover:bg-slate-700/50 rounded-lg transition-colors"
-            title="Filtros"
-          >
-            <Filter className="h-5 w-5 text-gray-400" />
-          </button>
         </div>
 
         {/* Search */}
@@ -56,33 +31,15 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
           />
         </div>
 
-        {/* Category Filter */}
-        {showFilters && (
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-300 mb-2">Categoría</label>
-            <select
-              value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full px-3 py-2 bg-slate-800/50 border border-slate-600/50 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              {categories.map(category => (
-                <option key={category} value={category}>
-                  {category === 'all' ? 'Todas las categorías' : category}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-
         {/* Results count */}
         <div className="text-sm text-gray-400">
-          {filteredDiagrams.length} de {diagrams.length} diagramas
+          {diagrams.length} de {totalDiagrams} diagramas
         </div>
       </div>
 
       {/* Diagram List */}
       <div className="flex-1 overflow-y-auto">
-        {filteredDiagrams.length === 0 ? (
+        {diagrams.length === 0 ? (
           <div className="p-4 text-center">
             <FileText className="h-12 w-12 text-gray-500 mx-auto mb-3" />
             <p className="text-gray-400">No se encontraron diagramas</p>
@@ -92,7 +49,7 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
           </div>
         ) : (
           <div className="p-2 space-y-2">
-            {filteredDiagrams.map((diagram) => (
+            {diagrams.map((diagram) => (
               <div
                 key={diagram.id}
                 onClick={() => onSelectDiagram(diagram)}
@@ -112,7 +69,7 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
                   {diagram.description}
                 </p>
 
-                {/* Category */}
+                {/* Author */}
                 <div className="flex items-center mb-2">
                   <User className="h-3 w-3 text-blue-400 mr-1" />
                   <span className="text-blue-300 text-xs font-medium">
