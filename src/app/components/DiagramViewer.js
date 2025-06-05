@@ -179,10 +179,10 @@ export default function DiagramViewer({ diagram }) {
       </div>
 
       {/* Info and Download Controls */}
-      <div className="absolute top-4 right-4 z-10 flex space-x-2">
+      <div className="absolute top-6 right-4 z-10 flex space-x-2">
         <button
           onClick={shareDiagram}
-          className="flex items-center justify-center w-10 h-10 bg-black/40 backdrop-blur-sm hover:bg-black/60 rounded-lg transition-colors"
+          className="flex items-center justify-center w-10 h-10 bg-blue-600 backdrop-blur-sm hover:bg-blue-700 rounded-lg transition-colors"
           title="Compartir diagrama"
         >
           <Share2 className="h-5 w-5 text-white" />
@@ -190,7 +190,7 @@ export default function DiagramViewer({ diagram }) {
         
         <button
           onClick={() => setShowInfo(!showInfo)}
-          className="flex items-center justify-center w-10 h-10 bg-black/40 backdrop-blur-sm hover:bg-black/60 rounded-lg transition-colors"
+          className="flex items-center justify-center w-10 h-10 bg-blue-600 backdrop-blur-sm hover:bg-blue-700 rounded-lg transition-colors"
           title="Información del diagrama"
         >
           <Info className="h-5 w-5 text-white" />
@@ -198,7 +198,7 @@ export default function DiagramViewer({ diagram }) {
         
         <button
           onClick={downloadSvg}
-          className="flex items-center justify-center w-10 h-10 bg-black/40 backdrop-blur-sm hover:bg-black/60 rounded-lg transition-colors"
+          className="flex items-center justify-center w-10 h-10 bg-blue-600 backdrop-blur-sm hover:bg-blue-700 rounded-lg transition-colors"
           title="Descargar SVG"
         >
           <Download className="h-5 w-5 text-white" />
@@ -216,7 +216,6 @@ export default function DiagramViewer({ diagram }) {
             <li>• Arrastra para mover el diagrama</li>
             <li>• Rueda del mouse para zoom</li>
             <li>• Doble clic para restablecer</li>
-            <li>• Pellizca en móvil para zoom</li>
           </ul>
         </div>
       </div>

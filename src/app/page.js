@@ -92,9 +92,6 @@ export default function Home() {
             </div>
             
             <div className="flex items-center space-x-4">
-              <div className="text-sm text-gray-400">
-                Raul Becerra Archives
-              </div>
             </div>
           </div>
         </div>

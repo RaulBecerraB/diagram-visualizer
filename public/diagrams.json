@@ -3,7 +3,7 @@
     {
       "id": "1",
       "filename": "JWT-flow.svg",
-      "title": "JWT Flow",
+      "title": "JWT Authentication Flow",
       "description": "Diagrama que ilustra el flujo simplificado de autenticación con JWT, incluyendo el proceso de login, generación de tokens y validación en el servidor.",
       "author": "José Raul Becerra Barceló",
       "createdAt": "2025-01-04T00:00:00.000Z"
