@@ -102,32 +102,27 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
       <header className="bg-black/20 backdrop-blur-sm border-b border-slate-700/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-                  <FileText className="h-5 w-5 text-white" />
+              <div className="flex items-center space-x-3">
+                <div className="w-8 h-8 flex items-center justify-center">
+                  <img src="/favicon.svg" alt="Logo" className="w-8 h-8" />
                 </div>
-                <h1 className="text-xl font-bold text-white">
-                  Visor de Diagramas
-                </h1>
-              </div>
-              <div className="hidden sm:block text-sm text-gray-400">
-                {diagrams.length} diagrama{diagrams.length !== 1 ? 's' : ''} disponible{diagrams.length !== 1 ? 's' : ''}
+                <div>
+                  <h1 className="text-xl font-bold text-white">
+                    Visor de Diagramas
+                  </h1>
+                  <div className="text-xs text-gray-400">
+                    {diagrams.length} diagrama{diagrams.length !== 1 ? 's' : ''} disponible{diagrams.length !== 1 ? 's' : ''}
+                  </div>
+                </div>
               </div>
             </div>
             
             <div className="flex items-center space-x-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                <input
-                  type="text"
-                  placeholder="Buscar diagramas..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 w-64 bg-slate-800/50 border border-slate-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                />
+              <div className="text-sm text-gray-400">
+                Raul Becerra Archives
               </div>
             </div>
           </div>
