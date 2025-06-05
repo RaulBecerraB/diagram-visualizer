@@ -103,8 +103,8 @@ export default function DiagramViewer({ diagram }) {
             wheelPanning: false
           }}
           limitToBounds={false}
-          centerZoomedOut={false}
-          disablePadding={true}
+          centerZoomedOut={true}
+          disablePadding={false}
           smooth={false}
           animationTime={0}
           velocityAnimation={{ disabled: true }}
@@ -144,14 +144,6 @@ export default function DiagramViewer({ diagram }) {
                   title="Restablecer vista"
                 >
                   <RotateCcw className="h-5 w-5 text-white" />
-                </button>
-                
-                <button
-                  onClick={() => centerView()}
-                  className="flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
-                  title="Centrar"
-                >
-                  <Maximize className="h-5 w-5 text-white" />
                 </button>
               </div>
 
