@@ -86,7 +86,7 @@ export default function DiagramViewer({ diagram }) {
       {/* Controls */}
       <div className="absolute top-4 left-4 z-10 flex flex-col space-y-2">
         <TransformWrapper
-          initialScale={0.5}
+          initialScale={1}
           minScale={0.1}
           maxScale={5}
           centerOnInit={true}
