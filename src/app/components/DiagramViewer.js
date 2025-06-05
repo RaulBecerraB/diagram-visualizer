@@ -86,13 +86,25 @@ export default function DiagramViewer({ diagram }) {
       {/* Controls */}
       <div className="absolute top-4 left-4 z-10 flex flex-col space-y-2">
         <TransformWrapper
-          initialScale={0.8}
+          initialScale={0.5}
           minScale={0.1}
           maxScale={5}
           centerOnInit={true}
           wheel={{ step: 0.1 }}
           pinch={{ step: 5 }}
           doubleClick={{ mode: 'reset' }}
+          limitToBounds={false}
+          centerZoomedOut={false}
+          disablePadding={true}
+          smooth={false}
+          wrapperStyle={{
+            width: '100%',
+            height: '100%'
+          }}
+          contentStyle={{
+            width: '100%',
+            height: '100%'
+          }}
         >
           {({ zoomIn, zoomOut, resetTransform, centerView }) => (
             <>
@@ -132,11 +144,11 @@ export default function DiagramViewer({ diagram }) {
 
               {/* Main viewer */}
               <TransformComponent
-                wrapperClass="!w-full !h-full"
-                contentClass="!w-full !h-full flex items-center justify-center"
+                wrapperClass="!w-full !h-full !overflow-auto"
+                contentClass="!w-auto !h-auto !min-w-full !min-h-full flex items-start justify-center p-8"
               >
                 <div 
-                  className="svg-container bg-white rounded-lg shadow-2xl p-4 max-w-none"
+                  className="svg-container bg-white rounded-lg shadow-2xl p-4 inline-block"
                   dangerouslySetInnerHTML={{ __html: svgContent }}
                 />
               </TransformComponent>
@@ -210,6 +222,19 @@ export default function DiagramViewer({ diagram }) {
           max-height: none !important;
           width: auto !important;
           height: auto !important;
+          display: block !important;
+        }
+        
+        /* Ensure the transform component allows scrolling for large content */
+        .react-transform-wrapper {
+          width: 100% !important;
+          height: 100% !important;
+        }
+        
+        .react-transform-component {
+          width: 100% !important;
+          height: 100% !important;
+          overflow: auto !important;
         }
       `}</style>
     </div>
