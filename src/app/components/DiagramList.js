@@ -15,10 +15,6 @@ export default function DiagramList({ diagrams, totalDiagrams, selectedDiagram, 
     <div className="h-full flex flex-col bg-slate-900/50 backdrop-blur-sm">
       {/* Header */}
       <div className="p-4 border-b border-slate-700/50">
-        <div className="mb-4">
-          <h2 className="text-xl font-bold text-white">Diagramas</h2>
-        </div>
-
         {/* Search */}
         <div className="relative mb-4">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
@@ -83,11 +79,6 @@ export default function DiagramList({ diagrams, totalDiagrams, selectedDiagram, 
                     <Calendar className="h-3 w-3 mr-1" />
                     <span>{formatDate(diagram.createdAt)}</span>
                   </div>
-                )}
-
-                {/* Selection indicator */}
-                {selectedDiagram?.id === diagram.id && (
-                  <div className="absolute top-2 right-2 w-3 h-3 bg-blue-500 rounded-full"></div>
                 )}
               </div>
             ))}
