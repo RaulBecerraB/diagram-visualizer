@@ -12,6 +12,7 @@ export default function Home() {
   const searchParams = useSearchParams();
   const [selectedDiagram, setSelectedDiagram] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Process diagrams data to add full paths
   const diagrams = diagramsData.diagrams.map(diagram => ({
@@ -44,9 +45,21 @@ export default function Home() {
   }, [searchParams, router]);
 
   const handleSelectDiagram = (diagram) => {
-    setSelectedDiagram(diagram);
-    // Update URL when diagram is selected
-    router.push(`/?diagram=${diagram.id}`);
+    if (selectedDiagram?.id === diagram.id) return; // Don't transition if same diagram
+    
+    setIsTransitioning(true);
+    
+    // Small delay to show transition effect
+    setTimeout(() => {
+      setSelectedDiagram(diagram);
+      // Update URL when diagram is selected
+      router.push(`/?diagram=${diagram.id}`);
+      
+      // End transition after a brief moment
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 150);
+    }, 100);
   };
 
   const filteredDiagrams = diagrams.filter(diagram =>
@@ -112,22 +125,25 @@ export default function Home() {
         </div>
 
         {/* Main Content */}
-        <div className="flex-1">
-          {selectedDiagram ? (
-            <DiagramViewer diagram={selectedDiagram} />
-          ) : (
-            <div className="h-full flex items-center justify-center">
-              <div className="text-center">
-                <FileText className="h-24 w-24 text-gray-500 mx-auto mb-6" />
-                <h2 className="text-2xl font-bold text-white mb-2">
-                  Selecciona un diagrama
-                </h2>
-                <p className="text-gray-400">
-                  Elige un diagrama de la lista para visualizarlo
-                </p>
+        <div className="flex-1 relative">
+          {/* Main viewer with fade transition */}
+          <div className={`h-full transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}>
+            {selectedDiagram ? (
+              <DiagramViewer diagram={selectedDiagram} />
+            ) : (
+              <div className="h-full flex items-center justify-center">
+                <div className="text-center">
+                  <FileText className="h-24 w-24 text-gray-500 mx-auto mb-6" />
+                  <h2 className="text-2xl font-bold text-white mb-2">
+                    Selecciona un diagrama
+                  </h2>
+                  <p className="text-gray-400">
+                    Elige un diagrama de la lista para visualizarlo
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>
