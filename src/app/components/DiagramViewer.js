@@ -82,7 +82,7 @@ export default function DiagramViewer({ diagram }) {
   }
 
   return (
-    <div className="relative h-full bg-slate-800/50">
+    <div className="relative h-full w-full bg-slate-800/50 overflow-hidden">
       {/* Controls */}
       <div className="absolute top-4 left-4 z-10 flex flex-col space-y-2">
         <TransformWrapper
@@ -99,7 +99,8 @@ export default function DiagramViewer({ diagram }) {
           smooth={false}
           wrapperStyle={{
             width: '100%',
-            height: '100%'
+            height: '100%',
+            overflow: 'hidden'
           }}
           contentStyle={{
             width: '100%',
@@ -144,7 +145,7 @@ export default function DiagramViewer({ diagram }) {
 
               {/* Main viewer */}
               <TransformComponent
-                wrapperClass="!w-full !h-full !overflow-auto"
+                wrapperClass="!w-full !h-full !overflow-hidden"
                 contentClass="!w-auto !h-auto !min-w-full !min-h-full flex items-start justify-center p-8"
               >
                 <div 
