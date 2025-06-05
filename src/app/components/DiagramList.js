@@ -89,7 +89,15 @@ export default function DiagramList({ diagrams, totalDiagrams, selectedDiagram, 
       {/* Footer */}
       <div className="p-4 border-t border-slate-700/50">
         <div className="text-xs text-gray-500 text-center">
-          Powered by Raul Becerra
+          Powered by{' '}
+          <a 
+            href="https://github.com/RaulBecerraB" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:text-blue-300 transition-colors underline"
+          >
+            Raul Becerra
+          </a>
         </div>
       </div>
     </div>
