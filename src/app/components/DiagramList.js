@@ -52,7 +52,7 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
             placeholder="Buscar diagramas..."
             value={searchTerm}
             onChange={(e) => onSearchChange(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-slate-800/50 border border-slate-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-2 bg-slate-800/50 border border-slate-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
         </div>
 
@@ -63,7 +63,7 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="w-full px-3 py-2 bg-slate-800/50 border border-slate-600/50 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              className="w-full px-3 py-2 bg-slate-800/50 border border-slate-600/50 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               {categories.map(category => (
                 <option key={category} value={category}>
@@ -98,7 +98,7 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
                 onClick={() => onSelectDiagram(diagram)}
                 className={`p-4 rounded-lg cursor-pointer transition-all duration-200 border ${
                   selectedDiagram?.id === diagram.id
-                    ? 'bg-purple-600/20 border-purple-500/50 shadow-lg shadow-purple-500/10'
+                    ? 'bg-blue-600/20 border-blue-500/50 shadow-lg shadow-blue-500/10'
                     : 'bg-slate-800/30 border-slate-700/30 hover:bg-slate-700/40 hover:border-slate-600/50'
                 }`}
               >
@@ -114,8 +114,8 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
 
                 {/* Category */}
                 <div className="flex items-center mb-2">
-                  <Tag className="h-3 w-3 text-purple-400 mr-1" />
-                  <span className="text-purple-300 text-xs font-medium">
+                  <Tag className="h-3 w-3 text-blue-400 mr-1" />
+                  <span className="text-blue-300 text-xs font-medium">
                     {diagram.category}
                   </span>
                 </div>
@@ -147,7 +147,7 @@ export default function DiagramList({ diagrams, selectedDiagram, onSelectDiagram
 
                 {/* Selection indicator */}
                 {selectedDiagram?.id === diagram.id && (
-                  <div className="absolute top-2 right-2 w-3 h-3 bg-purple-500 rounded-full"></div>
+                  <div className="absolute top-2 right-2 w-3 h-3 bg-blue-500 rounded-full"></div>
                 )}
               </div>
             ))}

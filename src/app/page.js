@@ -51,7 +51,7 @@ export default function Home() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <Loader2 className="h-16 w-16 animate-spin text-purple-400 mx-auto mb-4" />
+          <Loader2 className="h-16 w-16 animate-spin text-blue-400 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-white mb-2">Cargando Diagramas</h2>
           <p className="text-gray-400">Escaneando archivos SVG...</p>
         </div>
@@ -89,7 +89,7 @@ export default function Home() {
           </p>
           <button
             onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
           >
             Actualizar
           </button>
@@ -106,7 +106,7 @@ export default function Home() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
                   <FileText className="h-5 w-5 text-white" />
                 </div>
                 <h1 className="text-xl font-bold text-white">
@@ -126,7 +126,7 @@ export default function Home() {
                   placeholder="Buscar diagramas..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 pr-4 py-2 w-64 bg-slate-800/50 border border-slate-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="pl-10 pr-4 py-2 w-64 bg-slate-800/50 border border-slate-600/50 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
             </div>

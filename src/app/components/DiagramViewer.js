@@ -61,7 +61,7 @@ export default function DiagramViewer({ diagram }) {
     return (
       <div className="flex items-center justify-center h-full">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-400 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-400 mx-auto mb-4"></div>
           <p className="text-white">Cargando diagrama...</p>
         </div>
       </div>
@@ -86,8 +86,8 @@ export default function DiagramViewer({ diagram }) {
       {/* Controls */}
       <div className="absolute top-4 left-4 z-10 flex flex-col space-y-2">
         <TransformWrapper
-          initialScale={0.5}
-          minScale={0.1}
+          initialScale={1}
+          minScale={0.5}
           maxScale={5}
           centerOnInit={true}
           wheel={{ step: 0.1, smoothStep: 0.001 }}
@@ -124,7 +124,7 @@ export default function DiagramViewer({ diagram }) {
               <div className="bg-black/40 backdrop-blur-sm rounded-lg p-2 flex space-x-2">
                 <button
                   onClick={() => zoomIn()}
-                  className="flex items-center justify-center w-10 h-10 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
+                  className="flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
                   title="Acercar"
                 >
                   <ZoomIn className="h-5 w-5 text-white" />
@@ -132,7 +132,7 @@ export default function DiagramViewer({ diagram }) {
                 
                 <button
                   onClick={() => zoomOut()}
-                  className="flex items-center justify-center w-10 h-10 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
+                  className="flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
                   title="Alejar"
                 >
                   <ZoomOut className="h-5 w-5 text-white" />
@@ -140,7 +140,7 @@ export default function DiagramViewer({ diagram }) {
                 
                 <button
                   onClick={() => resetTransform()}
-                  className="flex items-center justify-center w-10 h-10 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
+                  className="flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
                   title="Restablecer vista"
                 >
                   <RotateCcw className="h-5 w-5 text-white" />
@@ -148,7 +148,7 @@ export default function DiagramViewer({ diagram }) {
                 
                 <button
                   onClick={() => centerView()}
-                  className="flex items-center justify-center w-10 h-10 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors"
+                  className="flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
                   title="Centrar"
                 >
                   <Maximize className="h-5 w-5 text-white" />
@@ -193,7 +193,7 @@ export default function DiagramViewer({ diagram }) {
       <div className="absolute bottom-4 left-4 z-10">
         <div className="bg-black/40 backdrop-blur-sm rounded-lg p-3 text-white text-sm max-w-xs">
           <div className="flex items-center space-x-2 mb-2">
-            <MousePointer className="h-4 w-4 text-purple-400" />
+            <MousePointer className="h-4 w-4 text-blue-400" />
             <span className="font-medium">Controles:</span>
           </div>
           <ul className="space-y-1 text-xs text-gray-300">
@@ -212,7 +212,7 @@ export default function DiagramViewer({ diagram }) {
           <p className="text-gray-300 text-sm mb-3">{diagram.description}</p>
           
           <div className="mb-3">
-            <span className="text-purple-400 text-xs font-medium">Categoría:</span>
+            <span className="text-blue-400 text-xs font-medium">Categoría:</span>
             <span className="text-white text-sm ml-2">{diagram.category}</span>
           </div>
           
@@ -220,7 +220,7 @@ export default function DiagramViewer({ diagram }) {
             {diagram.tags.map((tag, index) => (
               <span
                 key={index}
-                className="px-2 py-1 bg-purple-600/30 text-purple-300 text-xs rounded-full"
+                className="px-2 py-1 bg-blue-600/30 text-blue-300 text-xs rounded-full"
               >
                 {tag}
               </span>
