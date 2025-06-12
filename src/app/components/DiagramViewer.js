@@ -204,22 +204,6 @@ export default function DiagramViewer({ diagram }) {
           <Download className="h-5 w-5 text-white" />
         </button>
       </div>
-
-      {/* Instructions */}
-      <div className="absolute bottom-4 left-4 z-10">
-        <div className="bg-black/40 backdrop-blur-sm rounded-lg p-3 text-white text-sm max-w-xs">
-          <div className="flex items-center space-x-2 mb-2">
-            <MousePointer className="h-4 w-4 text-blue-400" />
-            <span className="font-medium">Controles:</span>
-          </div>
-          <ul className="space-y-1 text-xs text-gray-300">
-            <li>• Arrastra para mover el diagrama</li>
-            <li>• Rueda del mouse para zoom</li>
-            <li>• Doble clic para restablecer</li>
-          </ul>
-        </div>
-      </div>
-
       {/* Info Panel */}
       {showInfo && (
         <div className="absolute top-16 right-4 z-20 bg-black/80 backdrop-blur-sm rounded-lg p-4 max-w-sm">
